@@ -1,95 +1,54 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
 
-export default function Home() {
+import CreateTask from '@/components/CreateTask';
+import TaskList from '@/components/TaskList';
+import { TaskType } from '@/types/types';
+import { Box, Divider, Heading, useBreakpointValue } from '@chakra-ui/react';
+import React, { useState } from 'react';
+
+const Index: React.FC = () => {
+  const [tasks, setTasks] = useState<TaskType[]>([]);
+  const boxMt = useBreakpointValue({ base: '10%', xl: '5%' });
+  const boxMb = useBreakpointValue({ base: '30%', xl: '10%' });
+  const boxMinHeight = `calc(100vh - ${boxMt} - ${boxMb})`;
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    <Box
+      minHeight={boxMinHeight}
+      mt={boxMt}
+      mb={boxMb}
+      // minHeight={{
+      //   base: 'calc(100vh - 40%)',
+      //   xl: 'calc(100vh - 15%)',
+      // }}
+      // mt={{
+      //   base: '10%',
+      //   xl: '5%',
+      // }}
+      // mb={{
+      //   base: '30%',
+      //   xl: '10%',
+      // }}
+      // レスポンシブ対応が簡単にできる．最近の技術はすごいねぇ...
+      width={{
+        base: '80%', // スマホサイズ
+        xl: '60%', // PCサイズ
+      }}
+      mx={'auto'}
+    >
+      <Heading size={'lg'} textAlign={'center'} mb={'10'}>
+        TODO App
+      </Heading>
+      <CreateTask setTasks={setTasks} />
+      <Divider
+        my={'10'}
+        borderColor={'gray.200'}
+        borderWidth={'3px'}
+        borderRadius={'50'}
+      />
+      <TaskList tasks={tasks} />
+    </Box>
   );
-}
+};
+
+export default Index;
