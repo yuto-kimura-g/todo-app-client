@@ -21,6 +21,17 @@ mattnさんの記事 [（技術アウトプットに自作TODOアプリ）](http
 - (Vercel ??)
 - json-server
 
+## LOG
+```bash
+nvm use
+npx create-next-app@latest
+npm install @chakra-ui/react @chakra-ui/next-js @emotion/react @emotion/styled framer-motion
+npm install @chakra-ui/icons
+npm install -D prettier json-server
+npm run dev
+npm run mock
+```
+
 ## References
 - <https://levtech.jp/media/article/column/detail_473/>
 - ChatGPT-4o
