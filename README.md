@@ -19,6 +19,7 @@ mattnさんの記事 [（技術アウトプットに自作TODOアプリ）](http
 - eslint
 - prettier
 - (Vercel ??)
+- json-server
 
 ## References
 - <https://levtech.jp/media/article/column/detail_473/>
