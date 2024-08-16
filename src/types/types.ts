@@ -1,6 +1,6 @@
 export type TaskType = {
   // auto
-  readonly id: string;
+  readonly id: number;
   // input
   title: string;
   description: string | null;
@@ -8,5 +8,12 @@ export type TaskType = {
   // createdAt?: Date;
   // updatedAt?: Date;
   // status
-  completed: boolean;
+  isDone: boolean;
+};
+
+export type NewTaskType = {
+  title: string;
+  description: string | null;
+  dueDate: Date | null;
+  isDone: boolean;
 };

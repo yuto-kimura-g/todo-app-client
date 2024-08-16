@@ -1,5 +1,5 @@
 import { TaskType } from '@/types/types';
-import { CheckIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons';
+import { CheckIcon, DeleteIcon, EditIcon, RepeatIcon } from '@chakra-ui/icons';
 import {
   ButtonGroup,
   Card,
@@ -19,41 +19,52 @@ const TaskView: React.FC<Props> = ({ task }: Props) => {
   const [isDetailActive, setIsDetailActive] = useState(false);
 
   return (
-    <Card boxShadow={'lg'} _hover={{ color: 'blue.500' }}>
+    <Card
+      boxShadow={'lg'}
+      _hover={{ color: 'blue.500' }}
+      // opacity={task.isDone ? '0.5' : '1.0'}
+    >
       <CardHeader pb={'0'}>
         <ButtonGroup>
-          <IconButton
-            icon={<EditIcon />}
-            aria-label={'Edit'}
-            colorScheme={'green'}
-            variant={'outline'}
-            isRound={true}
-          >
-            Edit
-          </IconButton>
-          <IconButton
-            icon={<CheckIcon />}
-            aria-label={'Done'}
-            colorScheme={'blue'}
-            variant={'outline'}
-            isRound={true}
-          >
-            Done
-          </IconButton>
+          {task.isDone ? (
+            <IconButton
+              icon={<RepeatIcon />}
+              aria-label={'Redo'}
+              colorScheme={'orange'}
+              variant={'outline'}
+              isRound={true}
+            />
+          ) : (
+            <IconButton
+              icon={<CheckIcon />}
+              aria-label={'Done'}
+              colorScheme={'blue'}
+              variant={'outline'}
+              isRound={true}
+            />
+          )}
           <IconButton
             icon={<DeleteIcon />}
             aria-label={'Delete'}
             colorScheme={'red'}
             variant={'outline'}
             isRound={true}
-          >
-            Del
-          </IconButton>
+          />
+          {!task.isDone && (
+            <IconButton
+              icon={<EditIcon />}
+              aria-label={'Edit'}
+              colorScheme={'green'}
+              variant={'outline'}
+              isRound={true}
+            />
+          )}
         </ButtonGroup>
       </CardHeader>
 
       <CardBody
-        pt={'0'}
+        pt={'1'}
+        opacity={task.isDone ? '0.5' : '1.0'}
         onClick={() => {
           setIsDetailActive(!isDetailActive);
         }}
@@ -61,16 +72,32 @@ const TaskView: React.FC<Props> = ({ task }: Props) => {
         // onMouseLeave={() => setIsDetailActive(false)}
       >
         {isDetailActive ? (
-          <Heading size={'md'} wordBreak={'break-word'}>
+          <Heading
+            size={'xl'}
+            wordBreak={'break-word'}
+            // {...(task.isDone
+            //   ? { as: 'del', style: { display: 'inline-block' } }
+            //   : {})}
+            // as={task.isDone ? 'del' : 'h2'}
+            // as={task.isDone ? 'del' : 'span'}
+            // {...(task.isDone ? { as: 'del' } : {})}
+          >
+            {/* {task.isDone ? <del>{task.title}</del> : task.title} */}
             {task.title}
           </Heading>
         ) : (
           <Heading
             size={'md'}
+            // as={task.isDone ? 'del' : 'h2'}
+            // display={'inline-block'}
             whiteSpace={'nowrap'}
             overflow={'hidden'}
             textOverflow={'ellipsis'}
+            // {...(task.isDone
+            //   ? { as: 'del', style: { display: 'inline-block' } }
+            //   : {})}
           >
+            {/* {task.isDone ? <del>{task.title}</del> : task.title} */}
             {task.title}
           </Heading>
         )}
