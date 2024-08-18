@@ -1,5 +1,7 @@
-import Providers from '@/components/providers';
-import { fonts } from './fonts';
+'use client';
+
+import Provider from '@/components/Providers';
+import { fonts } from '@/utils/fonts';
 
 const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
@@ -12,7 +14,7 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
         <title>TODO App</title>
       </head>
       <body>
-        <Providers>{children}</Providers>
+        <Provider>{children}</Provider>
       </body>
     </html>
   );

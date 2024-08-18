@@ -1,11 +1,8 @@
 'use client';
 
-import { getTasks } from '@/api/client';
-import CreateTask from '@/components/CreateTask';
-import Loading from '@/components/Loading';
-const TaskList = React.lazy(() => import('@/components/TaskList'));
-// import TaskList from '@/components/TaskList';
-import { TaskType } from '@/types/types';
+import BaseModal from '@/components/BaseModal';
+import { TasksContext } from '@/components/Providers';
+import { DefaultTask } from '@/types/types';
 import {
   Box,
   Button,
@@ -16,16 +13,12 @@ import {
   useBreakpointValue,
   useDisclosure,
 } from '@chakra-ui/react';
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
+// const TaskList = React.lazy(() => import('@/components/TaskList'));
+import TaskList from '@/components/TaskList';
 
 const Index: React.FC = () => {
-  const [tasks, setTasks] = useState<TaskType[]>([]);
-
-  useEffect(() => {
-    getTasks().then((_tasks) => {
-      setTasks(_tasks);
-    });
-  }, []);
+  const tasks = useContext(TasksContext);
 
   const {
     isOpen: isOpenCreateTaskModal,
@@ -33,17 +26,18 @@ const Index: React.FC = () => {
     onClose: onCloseCreateTaskModal,
   } = useDisclosure();
 
+  // レスポンシブ対応用
+  // boxMinHeightを自動で決定するためにこんなことをしている
   const boxMt = useBreakpointValue({ base: '10%', xl: '5%' });
   const boxMb = useBreakpointValue({ base: '30%', xl: '10%' });
   const boxMinHeight = `calc(100vh - ${boxMt} - ${boxMb})`;
 
   return (
-    <Suspense fallback={<Loading />}>
+    <>
       <Box
         minHeight={boxMinHeight}
         mt={boxMt}
         mb={boxMb}
-        // レスポンシブ対応が簡単にできる．最近の技術はすごいねぇ...
         width={{
           base: '80%', // スマホサイズ
           md: '60%', // タブレットサイズ
@@ -54,13 +48,18 @@ const Index: React.FC = () => {
         <Heading size={'lg'} textAlign={'center'} mb={'10'}>
           TODO App Web Client
         </Heading>
-        <CreateTask
-          isOpenCreateTaskModal={isOpenCreateTaskModal}
-          onCloseCreateTaskModal={onCloseCreateTaskModal}
+
+        <BaseModal
+          isOpenModal={isOpenCreateTaskModal}
+          onCloseModal={onCloseCreateTaskModal}
+          modalType={'Create'}
+          defaultTask={new DefaultTask()}
         />
+
         <HStack spacing={5} ml={'5%'}>
           <Button
             color={'green'}
+            borderColor={'green'}
             variant={'outline'}
             borderWidth={3}
             onClick={onOpenCreateTaskModal}
@@ -69,15 +68,17 @@ const Index: React.FC = () => {
           </Button>
           {tasks && <Text>Stat: {tasks.length} tasks</Text>}
         </HStack>
+
         <Divider
           my={'10'}
           borderColor={'gray.200'}
           borderWidth={'3px'}
           borderRadius={'50'}
         />
-        <TaskList tasks={tasks} />
+
+        <TaskList />
       </Box>
-    </Suspense>
+    </>
   );
 };
 
