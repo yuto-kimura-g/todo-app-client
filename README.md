@@ -1,25 +1,35 @@
-# todo-app-client
+# todo-app-web-client
 
-mattnさんの記事 [（技術アウトプットに自作TODOアプリ）](https://levtech.jp/media/article/column/detail_473/) を読んで，TODOアプリ（のクライアント側）を作ってみた．フロントエンドの技術をかなり理解できた気がする．次はサーバーサイドもやりたいね．
+mattnさんの記事 [（技術アウトプットに自作TODOアプリ）](https://levtech.jp/media/article/column/detail_473/) を読んで，TODOアプリを作ってみた．
 
 今回意識したのは
 - 最新の技術を使いたい
-- 機能に拘りすぎない（まずは動くものを作る）
+- 機能，見た目に拘りすぎない（まずは動くものを作る）
 - CSSを書かない（ライブラリに任せる）
 
+開発中のメモは [`NOTE.md`](./docs/NOTE.md)
+
 ## Screenshot
-![Screenshot](./docs/screenshot.png)
+![screenshot](./docs/screenshot-pc-top.png)
+<details>
+  <summary>Click to expand</summary>
+  <img src="./docs/screenshot-pc-add.png" alt="screenshot" width="100%">
+  <img src="./docs/screenshot-pc-edit.png" alt="screenshot" width="100%">
+  <img src="./docs/screenshot-mobile-top.png" alt="screenshot" width="100%">
+  <img src="./docs/screenshot-mobile-add.png" alt="screenshot" width="100%">
+  <img src="./docs/screenshot-mobile-edit.png" alt="screenshot" width="100%">
+</details>
 
 ## Tech Stack
-- NVM
-- React
-- Next.js
-- TypeScript
-- Chakra UI
-- eslint
-- prettier
-- (Vercel ??)
-- json-server
+- NVM (version manager)
+- React (ui library)
+- Next.js (framework)
+- TypeScript (programming language)
+- Chakra UI (ui library)
+- Eslint (linter)
+- Prettier (formatter)
+- axios (http client)
+- json-server (mock server)
 
 ## LOG
 ```bash
@@ -30,16 +40,32 @@ npm install @chakra-ui/icons
 npm install -D prettier json-server
 npm run dev
 npm run mock
+npm run build
+npm run start
 ```
 
 ## References
 - <https://levtech.jp/media/article/column/detail_473/>
-- ChatGPT-4o
-- GitHub Copilot
-- [react | getting started](https://ja.react.dev/learn/start-a-new-react-project)
-- [next.js | getting started](https://nextjs.org/docs/getting-started/installation)
-- [chakra ui | getting started](https://v2.chakra-ui.com/getting-started/nextjs-app-guide)
-- [chakra ui | github](https://github.com/chakra-ui/chakra-ui)
-- [typescript | docs](https://www.typescriptlang.org/)
-- [prettier | docs](https://prettier.io/docs/en/configuration.html)
-- ...
+- setup
+  - <https://ja.react.dev/learn/start-a-new-react-project>
+  - <https://nextjs.org/docs/getting-started/installation>
+  - <https://v2.chakra-ui.com/getting-started/nextjs-app-guide>
+  - <https://github.com/chakra-ui/chakra-ui>
+  - <https://www.typescriptlang.org/>
+  - <https://prettier.io/docs/en/configuration.html>
+  - <https://github.com/axios/axios>
+- dev
+  - <https://ja.react.dev/learn>
+  - <https://developer.mozilla.org/ja/docs/Web>
+  - <https://ja.react.dev/learn/rendering-lists>
+  - <https://ja.react.dev/learn/scaling-up-with-reducer-and-context>
+  - <https://ja.react.dev/reference/react/StrictMode>
+  - <https://ja.react.dev/reference/react/useReducer>
+  - <https://stackoverflow.com/questions/65876577/usereducer-typescript-on-a-async-maner>
+  - <https://fetch.spec.whatwg.org/#cors-protocol>
+  - <https://developer.mozilla.org/ja/docs/Web/API/console>
+  - <https://zenn.dev/uhyo/articles/useeffect-taught-by-extremist>
+  - <https://ja.react.dev/reference/react/useEffect#fetching-data-with-effects>
+  - <https://nextjs.org/docs/app/building-your-application/rendering/client-components>
+  - ChatGPT-4o
+  - GitHub Copilot
