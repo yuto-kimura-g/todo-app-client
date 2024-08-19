@@ -10,6 +10,10 @@ const TaskList: React.FC = () => {
   const tasks = useContext(TasksContext);
   const dispatch = useContext(TasksDispatchContext);
 
+  // クライアント側のデータ(tasks)の初期化
+  // - ここでやるのが正解なのか（page.tsxの方が良い？）
+  // - useEffect使うのが良いのか（コンポーネントの外に出したほうが良い？）
+  // よく分からん
   useEffect(() => {
     api.getTasks().then((fetchedTasks) => {
       dispatch({
@@ -22,7 +26,6 @@ const TaskList: React.FC = () => {
   return (
     <>
       <VStack spacing={3} width={'90%'} mx={'auto'} alignItems={'left'}>
-        {/* TODO: tasks.get()で初回loadが完了するまではこの部分の描画をしない */}
         {tasks.length ? (
           tasks.map((task) => {
             // keyを指定しないと

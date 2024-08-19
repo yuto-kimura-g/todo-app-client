@@ -61,11 +61,12 @@ npm run start
   - <https://ja.react.dev/learn/scaling-up-with-reducer-and-context>
   - <https://ja.react.dev/reference/react/StrictMode>
   - <https://ja.react.dev/reference/react/useReducer>
+  - <https://ja.react.dev/learn/you-might-not-need-an-effect>
+  - <https://ja.react.dev/reference/react/useEffect#fetching-data-with-effects>
   - <https://stackoverflow.com/questions/65876577/usereducer-typescript-on-a-async-maner>
   - <https://fetch.spec.whatwg.org/#cors-protocol>
   - <https://developer.mozilla.org/ja/docs/Web/API/console>
   - <https://zenn.dev/uhyo/articles/useeffect-taught-by-extremist>
-  - <https://ja.react.dev/reference/react/useEffect#fetching-data-with-effects>
   - <https://nextjs.org/docs/app/building-your-application/rendering/client-components>
   - ChatGPT-4o
   - GitHub Copilot

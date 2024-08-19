@@ -10,6 +10,11 @@
   - 調べてたらソフトウェアアーキテクチャに行きついた．レイヤードアーキテクチャとかマイクロサービスアーキテクチャとかクリーンアーキテクチャとか，名前聞いたことあるけどよく分かってないのが沢山．いつかここらへんをちゃんと勉強したいね．（<https://www.oreilly.co.jp//books/9784873119823/> とか？）今回は適当に雰囲気でやった．
 - `.env`の型
   - `process.env.HOGE`は`string|undefined`型になるので，使う時に毎回型チェックするの面倒．`config/env.ts`で，`export const HOGE: string = process.env.HOGE || 'default value'` として一応解決．けどこれデプロイする時とかどうするんだろうね？
+- Next.js
+  - 以前viteでやってみたので，今回はNext.jsに挑戦してみた
+  - フォントの設定が簡単にできるのはNext.js良かったけど，ビルドの速度とか初期設定とか全体的にviteの方が快適だった気がする
+  - いまいちnextの良さを実感できなかった．
+  - あとはデプロイするならvercelと相性が良い？next.js良いのかも．まあ今回は筋トレが目的でデプロイするつもりは無いので関係なし．
 - App router と page router
   - よく分からんけどおすすめされてた App router を採用
 - json-server，顔文字可愛いね `(˶ᵔ ᵕ ᵔ˶)`
@@ -21,6 +26,7 @@
   - <https://ja.react.dev/learn/rendering-lists>
 - 関数が2回呼ばれる．→ わざとらしい．なるほど
   - `npm run dev`すると Strict Modeが有効になるのが原因．ビルドして実行すれば良い．
+  - というか，これで問題が起こるようならそもそも実装が悪い．悪い実装を見つけるための機能．
   - <https://ja.react.dev/reference/react/StrictMode>
   - > Strict Mode では、以下のような開発時専用の挙動が有効になります。
     > - コンポーネントは、純粋でない (impure) レンダーによって引き起こされるバグを見つけるために、レンダーを追加で 1 回行います。
@@ -29,8 +35,9 @@
   - <https://ja.react.dev/reference/react/useReducer>
   - > Strict Mode では、React は純粋でない関数を見つけやすくするために、リデューサと初期化関数を 2 回呼び出します。これは開発時の動作であり、本番には影響しません。リデューサと初期化関数が純粋であれば（そうあるべきです）、これはロジックに影響しません。片方の呼び出しの結果は無視されます。
 - propsのバケツリレー
+  - 親から孫へのデータの受け渡し
   - <https://ja.react.dev/learn/scaling-up-with-reducer-and-context>
-  - reducerとcontextを使う
+  - reducerとcontextを使うことで，親から（子を飛ばして）孫にデータを共有できる
 - reducer(state, action): state の内部で async できない
   - 解決案：<https://stackoverflow.com/questions/65876577/usereducer-typescript-on-a-async-maner>
   - dispatch(async fetch) じゃなくて， async fetch(dispatch) する
@@ -73,9 +80,9 @@
   - preflight requestとか，ちゃんと理解できてない
 - useEffect
   - ほえ～なんか調べたらいろいろ出てきた
-  - 結局今回は使ってない（context, reducerだけ）
   - <https://zenn.dev/uhyo/articles/useeffect-taught-by-extremist>
   - <https://ja.react.dev/reference/react/useEffect#fetching-data-with-effects>
+  - <https://ja.react.dev/learn/you-might-not-need-an-effect>
 - Headingで取り消し線と３点ドット
   - 長いタイトルと長い説明は３点ドットで省略したい
   - is_done = trueの時，文字に取り消し線を入れたい
